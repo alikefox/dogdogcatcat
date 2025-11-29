@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐶🐱 寵物歲數計算機</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h2>🐶 🐱 歲數計算機</h2>
+    <p class="subtitle">基於科學文獻的精準換算</p>
+    
+    <div class="input-group">
+      <label for="species">選擇種類：</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="species" value="dog" checked> 
+          <span>🐕 狗狗 (Cell Systems)</span>
+        </label>
+        <label>
+          <input type="radio" name="species" value="cat"> 
+          <span>🐈 貓貓 (AAHA 2021)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="birthdate">出生年月日：</label>
+      <input type="date" id="birthdate">
+    </div>
+
+    <button id="calcBtn">計算年齡</button>
+
+    <div class="result-area" id="resultArea" style="display: none;">
+      <div class="age-box">
+        <h3>實際年齡</h3>
+        <p id="realAge">0 歲 0 個月</p>
+      </div>
+      <div class="divider">➔</div>
+      <div class="age-box highlight">
+        <h3>人類年齡</h3>
+        <p id="humanAge">0 歲</p>
+      </div>
+    </div>
+    
+    <div class="footer-note">
+      <p>計算依據：</p>
+      <ul id="ref-dog" class="ref-text">
+        <li>狗狗：Human Age = 16 * ln(Dog Age) + 31</li>
+        <li>來源：Cell Systems (Wang et al., 2020)</li>
+      </ul>
+      <ul id="ref-cat" class="ref-text" style="display:none;">
+        <li>貓貓：1歲=15, 2歲=24, 之後每年+4</li>
+        <li>來源：2021 AAHA/AAFP Feline Life Stage Guidelines</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

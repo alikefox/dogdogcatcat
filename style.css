@@ -1,0 +1,142 @@
+:root {
+  --primary: #6c5ce7;
+  --secondary: #a29bfe;
+  --bg: #dfe6e9;
+  --text: #2d3436;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h2 {
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #636e72;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #b2bec3;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-group label {
+  font-weight: normal;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #5849be;
+}
+
+.result-area {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px dashed #b2bec3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.age-box {
+  flex: 1;
+}
+
+.age-box h3 {
+  font-size: 0.9rem;
+  color: #636e72;
+  margin-bottom: 5px;
+}
+
+.age-box p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  margin: 0;
+}
+
+.age-box.highlight p {
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.divider {
+  font-size: 1.5rem;
+  color: #b2bec3;
+  padding: 0 10px;
+}
+
+.footer-note {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #b2bec3;
+  text-align: left;
+  background: #f1f2f6;
+  padding: 10px;
+  border-radius: 8px;
+}
+.footer-note ul {
+  padding-left: 20px;
+  margin: 5px 0;
+}
