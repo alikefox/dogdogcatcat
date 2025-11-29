@@ -46,9 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
   loadDateForSpecies(savedSpecies);
 
   // 切換引用來源顯示 + 儲存選擇 + 載入對應日期
-  speciesRadios.forEach(radio => {
+  for (const radio of speciesRadios) {
     radio.addEventListener('change', (e) => {
       const species = e.target.value;
+      console.log('切換物種:', species); // debug
 
       if(species === 'dog') {
         refDog.style.display = 'block';
@@ -62,12 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem('petSpecies', species);
 
       // 載入對應物種的日期
-      loadDateForSpecies(species);
+      const key = species === 'dog' ? 'dogBirthdate' : 'catBirthdate';
+      const savedDate = localStorage.getItem(key);
+      console.log('載入日期 key:', key, '值:', savedDate); // debug
+      dateInput.value = savedDate || "";
 
       // 切換時隱藏結果（因為日期可能不同）
       resultArea.style.display = 'none';
     });
-  });
+  }
 
   // 日期變更時儲存到對應物種的 localStorage
   dateInput.addEventListener('change', () => {
