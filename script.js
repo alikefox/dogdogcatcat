@@ -8,50 +8,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const refDog = document.getElementById("ref-dog");
   const refCat = document.getElementById("ref-cat");
 
-  // 從 localStorage 載入已儲存的資料，若無則使用預設值
-  const savedDate = localStorage.getItem('petBirthdate');
-  const savedSpecies = localStorage.getItem('petSpecies');
-
-  dateInput.value = savedDate || "2023-02-28";
-
-  // 設定物種選擇
-  if (savedSpecies) {
+  // 取得目前選擇的物種
+  function getSelectedSpecies() {
     for (const radio of speciesRadios) {
-      if (radio.value === savedSpecies) {
-        radio.checked = true;
-        // 同步更新引用來源顯示
-        if (savedSpecies === 'cat') {
-          refDog.style.display = 'none';
-          refCat.style.display = 'block';
-        }
-        break;
-      }
+      if (radio.checked) return radio.value;
     }
+    return 'dog';
   }
 
-  // 切換引用來源顯示 + 儲存選擇
+  // 載入對應物種的日期
+  function loadDateForSpecies(species) {
+    const key = species === 'dog' ? 'dogBirthdate' : 'catBirthdate';
+    const savedDate = localStorage.getItem(key);
+    dateInput.value = savedDate || "";
+  }
+
+  // 儲存日期到對應物種
+  function saveDateForSpecies(species, date) {
+    const key = species === 'dog' ? 'dogBirthdate' : 'catBirthdate';
+    localStorage.setItem(key, date);
+  }
+
+  // 從 localStorage 載入已儲存的物種選擇
+  const savedSpecies = localStorage.getItem('petSpecies') || 'dog';
+
+  // 設定物種選擇並載入對應日期
+  for (const radio of speciesRadios) {
+    if (radio.value === savedSpecies) {
+      radio.checked = true;
+      if (savedSpecies === 'cat') {
+        refDog.style.display = 'none';
+        refCat.style.display = 'block';
+      }
+      break;
+    }
+  }
+  loadDateForSpecies(savedSpecies);
+
+  // 切換引用來源顯示 + 儲存選擇 + 載入對應日期
   speciesRadios.forEach(radio => {
     radio.addEventListener('change', (e) => {
-      if(e.target.value === 'dog') {
+      const species = e.target.value;
+
+      if(species === 'dog') {
         refDog.style.display = 'block';
         refCat.style.display = 'none';
       } else {
         refDog.style.display = 'none';
         refCat.style.display = 'block';
       }
-      // 儲存物種選擇到 localStorage
-      localStorage.setItem('petSpecies', e.target.value);
 
-      // 切換時如果已經有結果，重新計算
-      if(resultArea.style.display !== 'none') {
-        calculateAge();
-      }
+      // 儲存物種選擇到 localStorage
+      localStorage.setItem('petSpecies', species);
+
+      // 載入對應物種的日期
+      loadDateForSpecies(species);
+
+      // 切換時隱藏結果（因為日期可能不同）
+      resultArea.style.display = 'none';
     });
   });
 
-  // 日期變更時儲存到 localStorage
+  // 日期變更時儲存到對應物種的 localStorage
   dateInput.addEventListener('change', () => {
-    localStorage.setItem('petBirthdate', dateInput.value);
+    const species = getSelectedSpecies();
+    saveDateForSpecies(species, dateInput.value);
   });
 
   calcBtn.addEventListener("click", calculateAge);
